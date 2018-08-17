@@ -15,7 +15,7 @@ class dynamodb_test:
 
     """
     def __init__(self):
-        self.writers_number = 40
+        self.writers_number = 10
         self.dynamodb = boto3.resource('dynamodb')
 
     def create_table(self):
@@ -107,14 +107,14 @@ class dynamodb_test:
         item = response['Item']
 
     def massive_insert(self):
-
+        print("time;nb of writers;inserted items;total items in db")
         table = self.dynamodb.Table('test_earth_input')
         df_all = pd.read_csv('ressources/input.csv', header=0, index_col=['Date'], parse_dates=True, sep=";")
         with table.batch_writer() as batch:
             for column in df_all.columns:
                 i=0
                 df = df_all[column]
-                print("Importing %s" % df.name)
+                #print("Importing %s" % df.name)
                 count = self.get_items_number(table) #outside of time calculation loop for accuracy
                 t0 = time.time()
                 str_json = df.to_json(orient='index')
@@ -127,10 +127,10 @@ class dynamodb_test:
                         batch.put_item(Item=item)
                         i+=1
 
-                total = time.time() - t0
+                total_time = time.time() - t0
 
-                print("Import duration %s with %s writers for %s records and %s items in database" % (self.writers_number, total, i, count))
-
+                #print("Import duration with %s writers for %s records and %s items in database was %s" % (self.writers_number, i, count, total_time))
+                print("%s;%s;%s;%s" %(total_time, self.writers_number, i, count))
 
     def get_table_desc(self, table):
         dynamoDBClient = boto3.client('dynamodb')
