@@ -1,0 +1,31 @@
+ssh://metnext@wni-scheduler:22/usr/bin/python3 -u /home/metnext/decide2_tests/awsDynamoDbCreationTest.py
+Importing CAL_pNGD 1057_holiday
+Import duration 1.009704351425171 with 10 writers for 1095 records and 1095 items in database
+Importing CAL_weekday_1
+Import duration 1.1209290027618408 with 10 writers for 1095 records and 1095 items in database
+Importing CAL_weekday_2
+Import duration 95.04513597488403 with 10 writers for 1095 records and 2175 items in database
+Importing CAL_weekday_3
+Import duration 109.21303486824036 with 10 writers for 1095 records and 3261 items in database
+Importing CAL_weekday_4
+Import duration 109.13665986061096 with 10 writers for 1095 records and 4356 items in database
+Importing CAL_weekday_5
+Import duration 109.06617784500122 with 10 writers for 1095 records and 5451 items in database
+Importing CAL_weekday_6
+Import duration 108.97957801818848 with 10 writers for 1095 records and 6546 items in database
+Importing CAL_weekday_7
+Import duration 108.80670166015625 with 10 writers for 1095 records and 7641 items in database
+Importing CAL_is_ferie
+Import duration 108.83677935600281 with 10 writers for 1095 records and 8736 items in database
+Importing CAL_is_pont
+Import duration 108.80315661430359 with 10 writers for 1095 records and 9831 items in database
+Importing CAL_month_1
+Import duration 108.65634512901306 with 10 writers for 1095 records and 10926 items in database
+Importing CAL_month_2
+Import duration 108.58402919769287 with 10 writers for 1095 records and 12021 items in database
+Importing CAL_month_3
+Import duration 108.36486315727234 with 10 writers for 1095 records and 13116 items in database
+Importing CAL_month_4
+Import duration 108.25377249717712 with 10 writers for 1095 records and 14211 items in database
+Importing CAL_month_5
+Import duration 108.34528112411499 with 10 writers for 1095 records and 15306 items in database
