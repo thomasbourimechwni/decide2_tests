@@ -6,7 +6,7 @@ import json
 import time
 from boto3.dynamodb.table import BatchWriter
 
-class dynamodb_test:
+class dynamodb:
 
     """
         AWS credentials must be set up under /home/"user"/.aws/credentiels
@@ -165,7 +165,7 @@ class dynamodb_test:
 
 if __name__ == '__main__':
 
-    dynamodb_test = dynamodb_test()
+    dynamodb_test = dynamodb()
     #dynamodb_test.create_table()
     #dynamodb_test.add_item()
     #dynamodb_test.get_item()
