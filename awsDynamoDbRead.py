@@ -4,7 +4,7 @@ import boto3
 from boto3.dynamodb.conditions import Key,Attr
 import time
 
-class dynamodb_test:
+class dynamodb:
 
     """
         AWS credentials must be set up under /home/"user"/.aws/credentiels
@@ -22,7 +22,7 @@ class dynamodb_test:
 
 if __name__ == '__main__':
 
-        resource = dynamodb_test().resource
+        resource = dynamodb().resource
         table = resource.Table('test_earth_input')
         t0 = time.time()
         response = table.scan(
@@ -34,9 +34,8 @@ if __name__ == '__main__':
 
         for item in response['Items']:
 
-            #print("%s : %s, %s, %s" %(i, item['date'], item['serie_name'], item['value']))
+            print("%s : %s, %s, %s" %(i, item['date'], item['serie_name'], item['value']))
             i+=1
 
-        print("Query executed in %s\n"
-              "number of items : %s" %(total_time, i))
+        print("Query executed in %ss" %total_time)
 
