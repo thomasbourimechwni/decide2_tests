@@ -107,11 +107,11 @@ class dynamodb:
         item = response['Item']
 
     def massive_insert(self):
-        sizes=[10,100]
+        sizes=[10,100,1000,10000,100000,1000000]
 
         for size in sizes:
             self.create_table_for_massive_test(size)
-            print("time;nb of writers;inserted items;total items in db")
+            print("time;nb of writers;inserted items")
             table = self.dynamodb.Table('test_earth_input_big_table_%s' %size)
             batch = BatchWriter(table_name= 'test_earth_input_big_table_%s' %size,client=table.meta.client, flush_amount=25)
             t0 = time.time()
@@ -121,7 +121,7 @@ class dynamodb:
                             'value': i}
                     batch.put_item(Item=item)
             total_time = time.time() - t0
-            print("%s;%s;%s;%s" %(total_time, self.writers_number, i))
+            print("%s;%s;%s" %(total_time, self.writers_number, i))
 
 
 

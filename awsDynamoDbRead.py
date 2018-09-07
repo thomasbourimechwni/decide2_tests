@@ -22,20 +22,31 @@ class dynamodb:
 
 if __name__ == '__main__':
 
-        resource = dynamodb().resource
-        table = resource.Table('test_earth_input')
-        t0 = time.time()
-        response = table.scan(
-            Limit=20000,
-            #FilterExpression=Key('date').between('1431216000000','1432598400000')
-        )
-        i=0
-        total_time = time.time() - t0
 
-        for item in response['Items']:
 
-            print("%s : %s, %s, %s" %(i, item['date'], item['serie_name'], item['value']))
-            i+=1
+    def get_time_for_query(nb_elmnt, table_size):
 
-        print("Query executed in %ss" %total_time)
+            resource = dynamodb().resource
+            table = resource.Table('test_earth_input_big_table_' + str(table_size))
+            t0 = time.time()
+            KeyMin= int(table_size/2)
+            KeyMax= int(nb_elmnt)
+            response = table.scan(
+                Limit=10,
+                FilterExpression=Key('date').between(int(table_size/2), int((table_size/2)+nb_elmnt))
+            )
+            i=0
+            total_time = time.time() - t0
+
+            for item in response['Items']:
+
+                #print("%s : %s, %s, %s" %(i, item['date'], item['serie_name'], item['value']))
+                i+=1
+
+            print("%s %s %s %s %s" %(total_time, 10, table_size, KeyMin, KeyMax))
+
+    list = [10, 100, 1000, 10000,10000, 1000000]
+
+    for i in list:
+        get_time_for_query(i, i)
 
