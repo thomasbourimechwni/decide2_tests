@@ -4,6 +4,7 @@ import boto3
 import pandas as pd
 import json
 import time
+import sys
 
 
 class dynamodb_test:
@@ -15,7 +16,7 @@ class dynamodb_test:
 
     """
     def __init__(self):
-        self.writers_number = 10
+        self.writers_number = 20
         self.dynamodb = boto3.resource('dynamodb')
 
     def create_table(self):
@@ -110,12 +111,13 @@ class dynamodb_test:
         print("time;nb of writers;inserted items;total items in db")
         table = self.dynamodb.Table('test_earth_input')
         df_all = pd.read_csv('ressources/input.csv', header=0, index_col=['Date'], parse_dates=True, sep=";")
+        total = 0
         with table.batch_writer() as batch:
             for column in df_all.columns:
                 i=0
                 df = df_all[column]
                 #print("Importing %s" % df.name)
-                count = self.get_items_number(table) #outside of time calculation loop for accuracy
+                #count = self.get_items_number(table) #outside of time calculation loop for accuracy
                 t0 = time.time()
                 str_json = df.to_json(orient='index')
                 values = json.loads(str_json)
@@ -126,11 +128,14 @@ class dynamodb_test:
                                 'value': format(value, ".15g")}
                         batch.put_item(Item=item)
                         i+=1
+                        total +=1
 
                 total_time = time.time() - t0
 
                 #print("Import duration with %s writers for %s records and %s items in database was %s" % (self.writers_number, i, count, total_time))
-                print("%s;%s;%s;%s" %(total_time, self.writers_number, i, count))
+                print("%s;%s;%s;%s" %(total_time, self.writers_number, i, total))
+                sys.stdout.flush()
+
 
     def get_table_desc(self, table):
         dynamoDBClient = boto3.client('dynamodb')

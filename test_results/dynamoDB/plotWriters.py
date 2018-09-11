@@ -95,23 +95,26 @@ def graph(file_input, file_output):
 
     ax = plt.axes()
     plt.plot(X, Y)
-    # plt.locator_params(nbins=8)
-    major_ticks = np.arange(0, 22000, 3285)
-    minor_ticks = np.arange(0, 22000, 1095)
 
-    ax.set_xticks(major_ticks)
-    ax.set_xticks(minor_ticks, minor=True)
+    ticks = ['0.001', '0.01', '0.1', '1', '10', '100','1000']
+    ax.set_xticklabels(ticks)
+    #major_ticks = np.arange(0, 1135515, 100000)
+    #minor_ticks = np.arange(0, 22000, 1095)
 
+    #ax.set_xticks(major_ticks)
+    #ax.set_xticks(minor_ticks, minor=True)
+    plt.xticks(rotation=90)
+    plt.tick_params(labelsize='6')
     plt.grid()
     plt.title('Duration of insertion of 1095 items in Dynamodb')
     plt.ylabel('time in seconds')
-    plt.xlabel('elements in db')
+    plt.xlabel('K elements in db')
     plt.savefig("write/plots/" + file_output)
 
 if __name__ == '__main__':
 
-    #graph("40_writers.txt","test_40_writers.png")
+    graph("20_writers_PRECO2_model_data.txt","20_writers_PRECO2_model_data.png")
     #graph_variable_size("60_writers_variable_size.txt", "test_60_writers_variable_size_bar.png")
-    graph_read_half_db("5_Reader_limit_10.txt","test_5_readers_limit_10.png")
+    #graph_read_half_db("5_Reader_limit_10.txt","test_5_readers_limit_10.png")
 
 

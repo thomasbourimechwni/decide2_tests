@@ -77,7 +77,7 @@ def graph_variable_size(file_input, file_output):
     plt.grid()
     plt.title('insertion of x items in an empty Dynamodb table with 60 writers')
     plt.ylabel('time in seconds')
-    plt.xlabel('elements inserted')
+    plt.xlabel('elements inserted in thousands')
     plt.savefig("write/plots/" + file_output)
 
 def graph(file_input, file_output):
@@ -96,16 +96,19 @@ def graph(file_input, file_output):
     ax = plt.axes()
     plt.plot(X, Y)
     # plt.locator_params(nbins=8)
-    major_ticks = np.arange(0, 22000, 3285)
-    minor_ticks = np.arange(0, 22000, 1095)
+    ticks = ['0.001', '0.01', '0.1', '1', '10', '100','1000']
+    ax.set_xticklabels(ticks)
+    #major_ticks = np.arange(0, 1135515, 100000)
+    #minor_ticks = np.arange(0, 22000, 1095)
 
-    ax.set_xticks(major_ticks)
-    ax.set_xticks(minor_ticks, minor=True)
-
+    #ax.set_xticks(major_ticks)
+    #ax.set_xticks(minor_ticks, minor=True)
+    plt.xticks(rotation=90)
+    plt.tick_params(labelsize='6')
     plt.grid()
-    plt.title('Duration of insertion of 1095 items in Dynamodb')
+    plt.title('Duration of insertion of 1095 items in Aurora Postgresql')
     plt.ylabel('time in seconds')
-    plt.xlabel('elements in db')
+    plt.xlabel('K elements in db')
     plt.savefig("write/plots/" + file_output)
 
 if __name__ == '__main__':
