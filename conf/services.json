@@ -1,4 +1,4 @@
-{ "DecidePostgresDao": {"test":"decide2_tests.common.dao.DecidePostgresDao","dev_mock": "decide2_tests.common.dao.DecidePostgresDao", "prod": "decide2_tests.common.dao.DecidePostgresDao", "dev_bdd": "decide2_tests.common.dao.DecidePostgresDao"}
+{ "DecidePostgresDao": {"test":"common.dao.DecidePostgresDao","dev_mock": "common.dao.DecidePostgresDao", "prod": "common.dao.DecidePostgresDao", "dev_bdd": "common.dao.DecidePostgresDao"}
 
 
 }

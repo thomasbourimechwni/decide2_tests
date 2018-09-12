@@ -1,5 +1,5 @@
 __author__="tb"
-from decide2_tests.common.system.ServiceLoader import ServiceLoader
+from common.system.ServiceLoader import ServiceLoader
 
 
 
@@ -20,7 +20,7 @@ class aurora_psql:
 if __name__ == '__main__':
 
     db = aurora_psql()
-    db.dao.insert_points()
+    #db.dao.insert_points()
 
 
 

@@ -1,7 +1,7 @@
 import json
 import os
-from decide2_tests.common.exceptions.IllegalArgumentException import IllegalArgumentException
-from decide2_tests.common.dao.ConnectionManager import ConnectionManager
+from common.exceptions.IllegalArgumentException import IllegalArgumentException
+from common.dao.ConnectionManager import ConnectionManager
 
 
 class ServiceLoader:

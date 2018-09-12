@@ -8,9 +8,9 @@ from psycopg2.extras import NamedTupleCursor
 import pandas as pd
 import time
 import datetime
-from decide2_tests.common.system.LoggingLoader import setup_logging
-from decide2_tests.common.dao.ConnectionManager import ConnectionManager
-from decide2_tests.common.system.ServiceLoader import ServiceLoader
+from common.system.LoggingLoader import setup_logging
+from common.dao.ConnectionManager import ConnectionManager
+from common.system.ServiceLoader import ServiceLoader
 import json
 logger = logging.getLogger("DecideCleaner")
 
@@ -73,7 +73,12 @@ class DecidePostgresDao:
             logger.error(e)
 
 
+    def get_points(self, serie_name):
 
+        self._check_connection()
+        self.cursor.execute("select code,date,value from  points where code = ('%s')" % serie_name)
+        points = self.cursor.fetchall()
+        return points
 
     def clean_job_log(self, date_created=None):
 
